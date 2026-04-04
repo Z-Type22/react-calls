@@ -1,0 +1,24 @@
+.button {
+  padding: 8px 16px;
+
+  background: transparent;
+  color: #d1fae5;
+
+  border: 1px solid #065f46;
+  border-radius: 8px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  font-size: 20px;
+}
+
+.button:hover {
+  background-color: #065f46;
+  color: #ffffff;
+}
+
+.logout:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+}

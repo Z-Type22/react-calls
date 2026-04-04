@@ -40,12 +40,11 @@
   font-size: 20px;
 }
 
-.button:hover {
-  background-color: #065f46;
-  color: #ffffff;
+.login {
+  text-decoration: none;
 }
 
-.logout:hover {
-  background-color: #ef4444;
+.button:hover {
+  background-color: #065f46;
   color: #ffffff;
 }

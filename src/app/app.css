@@ -1,3 +1,7 @@
+* {
+  font-family: "Andale Mono", monospace;
+}
+
 html,
 body,
 #root {
