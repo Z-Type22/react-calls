@@ -1,11 +1,13 @@
 import styles from "./header.module.css";
-import { useCurrentUser } from "@/app/providers/user/UserProvider";
+import { useCurrentUser } from "@/app/providers/UserProvider";
 import { Link } from "react-router-dom";
-import { LogoutButton } from "@/features/auth/logout/ui/LogoutButton/LogoutButton";
+import { LogoutButton } from "@/features/ui/LogoutButton/LogoutButton";
 
 
 export const Header = () => {
-  const { currentUser } = useCurrentUser();
+  const { currentUser, loading } = useCurrentUser();
+
+  if (loading) return null;
 
   return (
     <header className={styles.header}>
@@ -16,7 +18,7 @@ export const Header = () => {
       {currentUser ? (
         <nav className={styles.nav}>
           <button className={styles.button}>Пользователи</button>
-          <button className={styles.button}>Звонки</button>
+          <Link to="/" className={styles.button}>Звонки</Link>
 
           <LogoutButton />
         </nav>

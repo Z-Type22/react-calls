@@ -1,0 +1,74 @@
+.mainSection {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.mainSection h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.participantList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.participantCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.participantCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.participantInfo {
+  display: flex;
+  align-items: center;
+}
+
+.participantAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+  border: 1px solid #ddd;
+}
+
+.participantName {
+  font-weight: bold;
+}
+
+.participantEmail {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.deleteButton {
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: #c53030;
+}

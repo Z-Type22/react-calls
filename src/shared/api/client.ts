@@ -1,6 +1,6 @@
 import axios, { AxiosHeaders } from "axios";
 import { axiosConfig } from '@/shared/config/axios.config';
-
+import { refreshInterceptor } from "@/shared/lib/refresh";
 import type { InternalAxiosRequestConfig } from "axios";
 
 export const api = axios.create(axiosConfig)
@@ -20,3 +20,8 @@ api.interceptors.request.use(async (config: InternalAxiosRequestConfig ) => {
 
   return config;
 });
+
+api.interceptors.response.use(
+  response => response,
+  refreshInterceptor
+);

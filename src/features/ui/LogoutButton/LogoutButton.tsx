@@ -1,4 +1,4 @@
-import { useCurrentUser } from "@/app/providers/user/UserProvider";
+import { useCurrentUser } from "@/app/providers/UserProvider";
 import styles from "./logout_button.module.css";
 
 export const LogoutButton = () => {

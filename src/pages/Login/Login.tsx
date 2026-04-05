@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { api } from "@/shared/api/client";
 import styles from "./login.module.css";
-import { useCurrentUser } from "@/app/providers/user/UserProvider";
+import { useCurrentUser } from "@/app/providers/UserProvider";
 
 type LoginForm = {
   username: string;

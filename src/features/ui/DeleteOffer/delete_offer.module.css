@@ -1,0 +1,36 @@
+.button {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #064e3b;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: "none";
+}
+
+.button:hover {
+  background-color: #0a6b52;
+}
+
+.deleteButton {
+  cursor: pointer;
+  margin-left: 4px;
+  background-color: #e53e3e;
+  border-width: 0;
+}
+
+.deleteButton:hover {
+  background-color: #c53030;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible {
+  outline: 2px solid #c7d2fe;
+  outline-offset: 2px;
+}

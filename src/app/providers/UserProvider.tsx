@@ -57,5 +57,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
 export const useCurrentUser = () => {
   const context = useContext(UserContext);
-  return context ?? { currentUser: null, setCurrentUser: () => {}, logout: () => {} };
+  return context ?? { 
+    currentUser: null, 
+    setCurrentUser: () => {}, 
+    logout: () => {},
+    loading: false,
+  };
 };

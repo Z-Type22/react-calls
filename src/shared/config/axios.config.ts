@@ -3,6 +3,6 @@ import type { CreateAxiosDefaults } from 'axios'
 export const axiosConfig: CreateAxiosDefaults = {
 	headers: { 'Content-Type': 'application/json' },
 	withCredentials: true,
-	baseURL: "http://localhost:8000/api/v1/",
+	baseURL: `${import.meta.env.VITE_BACKEND_URL}/${import.meta.env.VITE_BACKEND_API_VERSION}/`,
 	maxRedirects: 5
 }
