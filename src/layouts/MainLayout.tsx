@@ -1,7 +1,7 @@
 import styles from "./main-layout.module.css";
 import type { ReactNode } from "react";
 
-type MainLayoutProps = {
+interface MainLayoutProps {
   children: ReactNode
 }
 

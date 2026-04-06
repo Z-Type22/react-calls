@@ -3,7 +3,8 @@ import { Calls } from "@/pages/Calls/Calls";
 import { Login } from "@/pages/Login/Login";
 import { Registration } from "@/pages/Registration/Registration";
 import { CallDetails } from "@/pages/CallDetails/CallDetails";
-import { ProtectedRoute } from "./providers/ProtectedRoute";
+import { ConnectedCalls } from "@/pages/ConnectedCalls/ConnectedCalls";
+import { ProtectedRoute } from "@/app/providers/ProtectedRoute";
 
 export const AppRouter = () => (
   <Routes>
@@ -12,6 +13,14 @@ export const AppRouter = () => (
       element={
         <ProtectedRoute>
           <Calls />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/calls"
+      element={
+        <ProtectedRoute>
+          <ConnectedCalls />
         </ProtectedRoute>
       }
     />

@@ -17,8 +17,8 @@ export const Header = () => {
 
       {currentUser ? (
         <nav className={styles.nav}>
-          <button className={styles.button}>Пользователи</button>
-          <Link to="/" className={styles.button}>Звонки</Link>
+          <Link to="/calls" className={styles.button}>Аудиозвонки</Link>
+          <Link to="/" className={styles.button}>Мои звонки</Link>
 
           <LogoutButton />
         </nav>

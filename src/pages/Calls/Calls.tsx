@@ -6,7 +6,7 @@ import { Loading } from "@/features/ui/Loading/Loading";
 import { CreateOffer } from "@/features/components/CreateOffer/CreateOffer";
 import { DeleteOffer } from "@/features/ui/DeleteOffer/DeleteOffer";
 
-export type Call = {
+export interface Call {
   id: number;
   created_at: string;
   is_private: boolean;
@@ -38,7 +38,7 @@ export const Calls = () => {
 
   return (
     <div className={styles.calls_card}>
-      <h2>Список аудиовстреч</h2>
+      <h2>Список аудиозвонков</h2>
 
       <table className={styles.calls_table}>
         <thead>

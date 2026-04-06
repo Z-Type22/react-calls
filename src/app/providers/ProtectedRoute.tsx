@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 import { useCurrentUser } from "@/app/providers/UserProvider";
 
-type ProtectedRouteProps = {
+interface ProtectedRouteProps {
   children: ReactNode;
 };
 

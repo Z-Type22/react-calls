@@ -3,7 +3,7 @@ import { useState } from "react";
 import { api } from "@/shared/api/client";
 import type { Call } from "@/pages/Calls/Calls";
 
-type CreateOfferProps = {
+interface CreateOfferProps {
   setCalls: React.Dispatch<React.SetStateAction<Call[]>>;
 };
 
@@ -41,7 +41,7 @@ export const CreateOffer = ({ setCalls }: CreateOfferProps) => {
             className={styles.popup_content}
             onClick={e => e.stopPropagation()}
           >
-            <h3>Создать аудиовстречу</h3>
+            <h3>Создать аудиозвонок</h3>
             <button
               className={styles.button}
               onClick={handleCreateCall}

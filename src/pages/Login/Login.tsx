@@ -5,7 +5,7 @@ import { api } from "@/shared/api/client";
 import styles from "./login.module.css";
 import { useCurrentUser } from "@/app/providers/UserProvider";
 
-type LoginForm = {
+interface LoginForm {
   username: string;
   password: string;
 };

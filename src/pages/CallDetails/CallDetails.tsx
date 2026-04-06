@@ -24,7 +24,7 @@ export interface Call {
 }
 
 export const CallDetails: React.FC = () => {
-  const { call_id } = useParams();
+  const { call_id } = useParams<{ call_id: string }>();
   const [call, setCall] = useState<Call | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -42,14 +42,32 @@ export const CallDetails: React.FC = () => {
     fetchCall();
   }, [call_id]);
 
+  const handleCalleesUpdate = (
+    updater: (prev: User[]) => User[]
+  ) => {
+    if (!call) return;
+
+    setCall({
+      ...call,
+      callees: updater(call.callees),
+    });
+  };
+
   if (loading) return <Loading />;
   
   if (!call) return <p>Call not found</p>;
 
   return (
     <div className={styles.callDetailsContainer}>
-      <Sidebar call={call} />
-      <MainSection callees={[...call.callees]} />
+      <Sidebar 
+        call={call}
+        onCalleesUpdate={handleCalleesUpdate}
+      />
+      <MainSection
+        callId={Number(call_id)}
+        callees={[...call.callees]}
+        onCalleesUpdate={handleCalleesUpdate}
+      />
     </div>
   );
 };

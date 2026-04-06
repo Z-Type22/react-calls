@@ -2,7 +2,7 @@ import styles from "./delete_offer.module.css";
 import { api } from "@/shared/api/client";
 import type { Call } from "@/pages/Calls/Calls";
 
-type DeleteOfferProps = {
+interface DeleteOfferProps {
   callId: number;
   setCalls: React.Dispatch<React.SetStateAction<Call[]>>;
 };

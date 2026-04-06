@@ -3,7 +3,7 @@ import { api } from "@/shared/api/client";
 import { useNavigate } from "react-router-dom";
 
 interface User {
-  id: string;
+  id: number;
   username: string;
   email: string;
   avatar: string;
