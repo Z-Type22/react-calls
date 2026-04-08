@@ -18,9 +18,9 @@ dist-ssr/
 .vite/
 
 # Environment variables
-# .env
-# .env.*
-# !.env.example
+.env
+.env.*
+!.env.example
 
 # Local config
 *.local
