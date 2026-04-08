@@ -17,13 +17,6 @@
   border-radius: 8px;
 }
 
-.searchInput {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-}
-
 .participantCard {
   display: flex;
   justify-content: space-between;
@@ -76,5 +69,9 @@
 .infoMessage {
   color: #0a6b52;
   text-align: center;
-  padding-top: 15px;
+}
+
+.usersList {
+  max-height: 300px;
+  overflow-y: auto;
 }

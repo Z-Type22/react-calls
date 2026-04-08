@@ -4,6 +4,7 @@ import { Login } from "@/pages/Login/Login";
 import { Registration } from "@/pages/Registration/Registration";
 import { CallDetails } from "@/pages/CallDetails/CallDetails";
 import { ConnectedCalls } from "@/pages/ConnectedCalls/ConnectedCalls";
+import { CallConnect } from "@/pages/CallConnect/CallConnect";
 import { ProtectedRoute } from "@/app/providers/ProtectedRoute";
 
 export const AppRouter = () => (
@@ -29,6 +30,15 @@ export const AppRouter = () => (
       element={
         <ProtectedRoute>
           <CallDetails />
+        </ProtectedRoute>
+      }
+    />
+
+    <Route
+      path="/calls/connect/:call_id"
+      element={
+        <ProtectedRoute>
+          <CallConnect />
         </ProtectedRoute>
       }
     />

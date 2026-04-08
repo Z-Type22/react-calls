@@ -10,15 +10,23 @@ interface CreateOfferProps {
 export const CreateOffer = ({ setCalls }: CreateOfferProps) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [title, setTitle] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleCreateCall = async () => {
     try {
+      if (!title.trim()) {
+        setErrorMessage("Заголовок не может быть пустым");
+        return;
+      }
+
       setCreating(true);
-      const response = await api.post("calls");
+      const response = await api.post("calls", { title });
       setCalls(prev => [...prev, response.data]);
       setIsPopupOpen(false);
+      setTitle("");
     } catch (e) {
-      alert("Не удалось создать аудиовстречу");
+      setErrorMessage("Не удалось создать аудиовстречу");
     } finally {
       setCreating(false);
     }
@@ -42,6 +50,19 @@ export const CreateOffer = ({ setCalls }: CreateOfferProps) => {
             onClick={e => e.stopPropagation()}
           >
             <h3>Создать аудиозвонок</h3>
+
+            <input
+              type="text"
+              placeholder="Введите заголовок"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              className={styles.input}
+            />
+
+            {errorMessage && (
+              <div className={styles.errorMessage}>{errorMessage}</div>
+            )}
+
             <button
               className={styles.button}
               onClick={handleCreateCall}

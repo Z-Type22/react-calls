@@ -17,10 +17,12 @@ export interface User {
 
 export interface Call {
   id: number;
+  title: string;
   caller: User;
   callees: User[];
   created_at: string;
   is_private: boolean;
+  uuid: string;
 }
 
 export const CallDetails: React.FC = () => {

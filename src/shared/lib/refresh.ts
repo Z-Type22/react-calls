@@ -17,8 +17,12 @@ export async function refreshInterceptor(error: any) {
   const originalRequest = error.config;
 
   if (
-    error.response?.status !== 401 ||
-    originalRequest._retry
+    !error.response ||
+    error.response.status !== 401 ||
+    originalRequest._retry ||
+    originalRequest.url?.includes("auth/login") ||
+    originalRequest.url?.includes("auth/logout") ||
+    originalRequest.url?.includes("auth/refresh")
   ) {
     return Promise.reject(error);
   }
@@ -34,7 +38,6 @@ export async function refreshInterceptor(error: any) {
 
   try {
     await api.post("auth/refresh");
-
     processQueue();
     return api(originalRequest);
   } catch (refreshError) {

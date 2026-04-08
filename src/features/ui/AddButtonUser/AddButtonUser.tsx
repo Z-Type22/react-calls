@@ -30,6 +30,7 @@ export const AddButtonUser: React.FC<AddButtonUserProps> = ({
     });
 
     if (alreadyExists) {
+      console.log('??');
       setInfoMessage("Пользователь уже добавлен");
       setTimeout(() => setInfoMessage(null), 3000);
       return;

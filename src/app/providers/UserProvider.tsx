@@ -30,9 +30,18 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     navigate("/login");
   };
 
+  async function safeApiCall<T>(fn: () => Promise<T>) {
+    try {
+      return await fn();
+    } catch (error: any) {
+      return Promise.reject(error);
+    }
+  }
+
+
   const loadCurrentUser = async () => {
     try {
-      const response = await api.get("users/me");
+      const response = await safeApiCall(() => api.get("users/me"));
       setCurrentUser(response.data);
     } catch (error: any) {
       if (error?.response?.status === 401) {

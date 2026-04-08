@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import styles from "./add_user.module.css";
-import { api } from "@/shared/api/client";
+import { useUsers } from "@/shared/hooks/useUsers";
 import { Loading } from "@/features/ui/Loading/Loading";
 import { AddButtonUser } from "@/features/ui/AddButtonUser/AddButtonUser";
+import { UserSearchInput } from "@/features/ui/UserSearchInput/UserSearchInput";
 import type { User } from "@/pages/CallDetails/CallDetails";
 
 interface AddUserProps {
@@ -11,47 +12,32 @@ interface AddUserProps {
 }
 
 export const AddUser: React.FC<AddUserProps> = ({ callId, onCalleesUpdate }) => {
+  const { 
+    users, search, page, hasMore, initialLoading, 
+    loadingMore, fetchUsers, searchUsers, reset,
+  } = useUsers();
+
   const [isOpen, setIsOpen] = useState(false);
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState("");
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
-  const debounceRef = useRef<number | null>(null);
+  const handleScroll = () => {
+    if (!listRef.current || loadingMore || !hasMore) return;
 
-  const fetchUsers = async (query?: string) => {
-    setLoading(true);
-    try {
-      const response = query
-        ? await api.get("users/search", { params: { q: query } })
-        : await api.get("users");
-
-      setUsers(response.data);
-    } finally {
-      setLoading(false);
+    const { scrollTop, scrollHeight, clientHeight } = listRef.current;
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      fetchUsers(search, page + 1, true);
     }
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearch(value);
-
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-
-    debounceRef.current = window.setTimeout(() => {
-      fetchUsers(value);
-    }, 400);
-  };
-
-  const openModal = async () => {
+  const openModal = () => {
     setIsOpen(true);
     fetchUsers();
   };
 
   const closeModal = () => {
     setIsOpen(false);
-    setSearch("");
-    setUsers([]);
+    reset();
   };
 
   return (
@@ -68,19 +54,18 @@ export const AddUser: React.FC<AddUserProps> = ({ callId, onCalleesUpdate }) => 
           >
             <h3>Добавить пользователя</h3>
 
-            <input
-              type="text"
-              placeholder="Поиск..."
-              className={styles.searchInput}
-              value={search}
-              onChange={handleSearchChange}
-            />
+            <UserSearchInput value={search} onChange={searchUsers} />
 
-            {loading ? (
-              <Loading minHeight="0" />
+            {infoMessage && (
+              <div className={styles.infoMessage}>{infoMessage}</div>
+            )}
+
+            {initialLoading ? (
+              <Loading minHeight="120px" />
             ) : (
-              <div>
-                {users.map((user) => (
+              <div ref={listRef} className={styles.usersList} onScroll={handleScroll}>
+                
+                {users.map(user => (
                   <div key={user.id} className={styles.participantCard}>
                     <div className={styles.participantInfo}>
                       <img
@@ -114,10 +99,6 @@ export const AddUser: React.FC<AddUserProps> = ({ callId, onCalleesUpdate }) => 
 
                 {users.length === 0 && (
                   <p>Пользователи не найдены</p>
-                )}
-
-                {infoMessage && (
-                  <div className={styles.infoMessage}>{infoMessage}</div>
                 )}
               </div>
             )}

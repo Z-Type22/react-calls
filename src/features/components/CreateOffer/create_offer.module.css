@@ -66,3 +66,22 @@
   outline-offset: 2px;
 }
 
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box; 
+}
+
+.input:focus {
+  border-color: #064e3b;
+  box-shadow: 0 0 0 2px rgba(6, 78, 59, 0.2);
+}
+
+.errorMessage {
+  color: red;
+}

@@ -8,8 +8,8 @@ import { DeleteOffer } from "@/features/ui/DeleteOffer/DeleteOffer";
 
 export interface Call {
   id: number;
+  title: string;
   created_at: string;
-  is_private: boolean;
   callees: [];
 };
 
@@ -40,40 +40,45 @@ export const Calls = () => {
     <div className={styles.calls_card}>
       <h2>Список аудиозвонков</h2>
 
-      <table className={styles.calls_table}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Дата создания</th>
-            <th>Участники</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {calls.map(call => (
-            <tr key={call.id}>
-              <td>{call.id}</td>
-              <td>{new Date(call.created_at).toLocaleDateString()}</td>
-              <td>{call.callees.length}</td>
-              <td>
-                <Link
-                  to={`/calls/${call.id}`}
-                  className={styles.button}
-                >
-                  Перейти
-                </Link>
-
-                <DeleteOffer
-                  callId={call.id}
-                  setCalls={setCalls}
-                />
-              </td>
+      {calls.length === 0 ? (
+        <p>Вы не создали ни одного аудиозвонка</p>
+      ) : (
+        <table className={styles.calls_table}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Название</th>
+              <th>Дата создания</th>
+              <th>Участники</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
 
+          <tbody>
+            {calls.map(call => (
+              <tr key={call.id}>
+                <td>{call.id}</td>
+                <td>{call.title}</td>
+                <td>{new Date(call.created_at).toLocaleDateString()}</td>
+                <td>{call.callees.length}</td>
+                <td>
+                  <Link
+                    to={`/calls/${call.id}`}
+                    className={styles.button}
+                  >
+                    Перейти
+                  </Link>
+
+                  <DeleteOffer
+                    callId={call.id}
+                    setCalls={setCalls}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
       <CreateOffer setCalls={setCalls} />
 
     </div>
